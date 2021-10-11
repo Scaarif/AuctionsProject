@@ -2,17 +2,26 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.db import IntegrityError
-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
-from .models import User, Category
+from .models import User, Category, Listing, Bid, Comment
 
 # Create your views here.
 
 def index(request):
+	listings = Listing.objects.filter(sold=False)
+	return render(request, 'auctions/index.html', {'listings':listings})
+
+def categories(request):
 	categories = Category.objects.all()
 	context = {'categories':categories}
-	return render(request, 'auctions/index.html', context )
+	return render(request, 'auctions/categories.html', context )
+
+def all_listings(request):
+	listings = Listing.objects.all()
+	#bids = Bid.objects.all()
+	return render(request, 'auctions/all_listings.html', {'listings':listings})
 
 def login_view(request):
 	if request.method == "POST":

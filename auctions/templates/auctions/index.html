@@ -1,19 +1,13 @@
-{% extends "auctions/layout.html" %}
-{% block body %}
-	<h1>Active Listings </h1>
-	<div>
-		<ul>
-		{% if categories %}
-			{% for category in categories %}
-				<li>
-					<a href="{% url 'listings' category.id %}">{{category}}</a>
-				</li>
-			{% endfor %}
-		
-		{% else %}
-		<li>No active listings yet.</li>
-		{% endif %}
-	</ul>
-				
-	</div>
-{% endblock %}
+{% extends 'auctions/layout.html'%}
+{%block body%}
+<h1>Active Listings</h1>
+<ul>
+	{% for listing in listings %}
+		<li>{{listing.title}} <br> {{listing.description}}<br>
+		The listing price is ksh.{{listing.listing_price}}</li>
+	{% empty %}
+	<li>No active listings yet...</li>
+	{% endfor %}
+</ul>
+<a href="{% url 'categories' %}">Go to categories </a>
+{%endblock%}
