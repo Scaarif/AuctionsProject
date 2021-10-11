@@ -5,12 +5,14 @@ from django.db import IntegrityError
 
 from django.shortcuts import render
 
-from .models import User
+from .models import User, Category
 
 # Create your views here.
 
 def index(request):
-	return render(request, 'auctions/index.html')
+	categories = Category.objects.all()
+	context = {'categories':categories}
+	return render(request, 'auctions/index.html', context )
 
 def login_view(request):
 	if request.method == "POST":
@@ -54,6 +56,15 @@ def register(request):
 		return HttpResponseRedirect(reverse("index"))
 	else:
 		return render(request, 'auctions/register.html')
+
+
+def listings(request, category_id):
+	'''Return listings under a category'''
+	category = Category.objects.get(id=category_id)
+	listings = category.listing_set.all()
+	return render(request, 'auctions/listings.html', {"category":category, "listings":listings})
+
+
 
 
 
