@@ -13,11 +13,11 @@ class Category(models.Model):
 	
 	def __str__(self):
 		"""Return a string representation of the model."""
-		return self.category_name
+		return f"{self.category_name}"
 
 class Listing(models.Model):
 	""" An active listing in a given category """
-	#user = models.ForeignKey(User, on_delete=models.CASCADE) #the user who posted the listing
+	user = models.ForeignKey(User, on_delete=models.CASCADE) #the user who posted the listing
 	category = models.ForeignKey(Category, on_delete=models.CASCADE)
 	title = models.CharField(max_length=200)
 	date_added = models.DateTimeField(auto_now_add = True)
@@ -48,9 +48,9 @@ class Comment(models.Model):
 
 class Bid(models.Model):
 	"""Bids placed on a listing by users"""
-	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	user = models.ForeignKey(User, on_delete=models.CASCADE,)
 	listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
-	bid_price = models.DecimalField(max_digits=6, decimal_places=2)
+	bid_price = models.DecimalField(default=0, max_digits=6, decimal_places=2)
 	#current_bid = models.IntegerField()
 
 	def __str__(self):
@@ -60,9 +60,10 @@ class Bid(models.Model):
 
 class Watchlist(models.Model):
 	"""Keeps track of whether a listing is in a users watchlist"""
-	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	user = models.ForeignKey(User, on_delete=models.CASCADE,)
 	listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
 	watching = models.BooleanField(default=False)
+
 
 
 

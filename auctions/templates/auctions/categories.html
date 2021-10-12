@@ -6,7 +6,7 @@
 		{% if categories %}
 			{% for category in categories %}
 				<li>
-					<a href="{% url 'listings' category.id %}">{{category}}</a>
+					<a href="{% url 'listing' category.id %}">{{category}}</a>
 				</li>
 			{% endfor %}
 		

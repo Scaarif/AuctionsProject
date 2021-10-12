@@ -18,10 +18,10 @@ def categories(request):
 	context = {'categories':categories}
 	return render(request, 'auctions/categories.html', context )
 
-def all_listings(request):
-	listings = Listing.objects.all()
-	#bids = Bid.objects.all()
-	return render(request, 'auctions/all_listings.html', {'listings':listings})
+def a_listing(request, listing_title):
+	listing = Listing.objects.filter(title=listing_title)
+
+	return render(request, 'auctions/a_listings.html', {'listing':listing})
 
 def login_view(request):
 	if request.method == "POST":
@@ -67,11 +67,29 @@ def register(request):
 		return render(request, 'auctions/register.html')
 
 
-def listings(request, category_id):
+def listing(request, category_id):
 	'''Return listings under a category'''
 	category = Category.objects.get(id=category_id)
 	listings = category.listing_set.all()
-	return render(request, 'auctions/listings.html', {"category":category, "listings":listings})
+	return render(request, 'auctions/listing.html', {"category":category, "listings":listings})
+
+##
+@login_required
+def listing_info(request, listing_id):
+	listing = Listing.objects.get(id=listing_id)
+	user = request.user
+	is_owner = True if listing.user == user else False
+	category = Category.objects.get(category=listing.category)
+	comments = Comment.objects.filter(listing=listing.id)
+	watching = Watchlist.objects.filter(user=user, listing=listing)
+	if watching:
+		watching = Watchlist.objects.get(user=user, listing=listing)
+
+	return listing, user, is_owner, category, comments, watching 
+
+	
+
+
 
 
 
