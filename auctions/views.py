@@ -88,7 +88,7 @@ def listing_info(request, listing_id):
 
 	return listing, user, is_owner, category, comments, watching 
 
-@login_required
+
 def a_listing(request, listing_id):
 	info = listing_info(request, listing_id)
 	listing, user, is_owner, category = info[0], info[1], info[2], info[3]
@@ -143,7 +143,7 @@ def close_bidding(request, listing_id):
 		})
 
 @login_required
-def watchlist(request, user_id):
+def watchlist(request):
 	listing_ids = Watchlist.objects.filter(user = request.user, watching=True).values('listing')
 	listings = Listing.objects.filter(id__in = listing_ids)
 	return render(request, 'auctions/watchlist.html', {

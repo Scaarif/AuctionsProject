@@ -3,11 +3,20 @@
 <h1>Active Listings</h1>
 <ul>
 	{% for listing in listings %}
-		<li><a href="{% url 'a_listing' listing.id %}">{{listing.title}}</a> <br> {{listing.description}}<br>
+		{% if user.is_authenticated %}
+			<li><a href="{% url 'a_listing' listing.id %}">{{listing.title}}</a> 
+		{% else %}
+			<li style="text-decoration: underline;">{{listing.title}}</li>
+		{% endif %}
+		<br> {{listing.description}}<br>
 		The listing price is ksh.{{listing.listing_price}}</li>
 	{% empty %}
 	<li>No active listings yet...</li>
 	{% endfor %}
 </ul>
+{% if not user.is_authenticated %}
+<h5>Please <a href="{% url 'login' %}">log in </a>or <a href="{% url 'register' %}">create an account</a>
+to see all details</h5>
+{% endif %}
 <a href="{% url 'categories' %}">Go to categories </a>
 {%endblock%}

@@ -1,7 +1,9 @@
 {% extends "auctions/layout.html" %}
 {% block title%}{{listing.title}}{% endblock %}
 {% block body %}
+
 {% if user.is_authenticated %}
+
 <table style='width:100%;'>
 	<tbody>
 		<tr>
@@ -56,8 +58,6 @@
 	</div>
 	{% endfor %}
 </ul>
-{% else %}
-<h6>Please login or create an account</h6>
 {% endif %}
 
 {% endblock %}

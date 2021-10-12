@@ -13,8 +13,8 @@
                             <img src="{{ listing.image_url }}" style="width:80%;"/>
                         </td>
                         <td style="width: 60%;"  valign="top">
-                            <h5><a href="{% url 'listing' listing.id %}" >{{ listing.title }}</a></h5>
-                            <div>Bid: ${{ listing.bid_price }}</div>
+                            <h5><a href="{% url 'a_listing' listing.id %}" >{{ listing.title }}</a></h5>
+                            <div>Bid: ksh{{ listing.listing_price }}</div>
                         </td>
                     </tr>
                 </tbody>
