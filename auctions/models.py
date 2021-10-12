@@ -6,14 +6,14 @@ class User(AbstractUser):
 	pass 
 class Category(models.Model):
 	"""Grouping of auction listings on particular basis say fashion or furniture"""
-	category_name = models.CharField(max_length=100)
+	category = models.CharField(max_length=100)
 
 	class Meta:
 		verbose_name_plural = 'categories'
 	
 	def __str__(self):
 		"""Return a string representation of the model."""
-		return f"{self.category_name}"
+		return f"{self.category}"
 
 class Listing(models.Model):
 	""" An active listing in a given category """

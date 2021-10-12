@@ -3,7 +3,7 @@
 <h1>Active Listings</h1>
 <ul>
 	{% for listing in listings %}
-		<li><a href="">{{listing.title}}</a> <br> {{listing.description}}<br>
+		<li><a href="{% url 'a_listing' listing.id %}">{{listing.title}}</a> <br> {{listing.description}}<br>
 		The listing price is ksh.{{listing.listing_price}}</li>
 	{% empty %}
 	<li>No active listings yet...</li>

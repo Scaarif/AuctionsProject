@@ -1,0 +1,40 @@
+{% extends "auctions/layout.html" %}
+{% block title%}{{listing.title}}{% endblock %}
+{% block body %}
+{% if is_winner %}
+<h5>Congratulations, you are the winner!</h5>
+{% else %}
+<h5>Bidding is closed</h5>
+{% endif %}
+
+<table style='width:100%;'>
+	<tbody>
+		<tr>
+			<td style='width:40px;'>
+				<h5>{{listing.title}}</h5>
+				<img src='{{listing.image_url}}' style='width:90%;'/>
+			</td>
+			<td style='width:60%;'>
+				<div>{{listing.description}}</div>
+				<div>Final bidding price: ksh.{{listing.listing_price}}</div>
+				<br>
+
+				<div>Category: {{category}}</div>
+				<div>Listed by: {{listing.user}}</div>
+
+			</td>
+		</tr>
+	</tbody>	
+</table>
+
+<br>
+<h6>Comments</h6>
+<ul style='list-style-type: none;'>
+	{% for comment in comments %}
+	<div style='border: 1px solid lightgray; margin: 10px; padding:10px; border-radius; 10px; width:40%;'>
+		<li>{{comment}}</li>	
+	</div>
+	{% endfor %}
+</ul>
+
+{% endblock %}
