@@ -30,7 +30,7 @@ class Listing(models.Model):
 
 	def __str__(self):
 		"""Return a string representation of the model."""
-		return f"{self.description}" 
+		return f"{self.title}: listed at ksh.{self.listing_price}" 
 
 
 class Comment(models.Model):

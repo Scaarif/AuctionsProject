@@ -4,7 +4,7 @@
 <h1>{{category}}</h1>
 <ul>
 {% for listing in listings %}
-<li>{{listing.title}} <br> {{listing}} <br>
+<li>{{listing.title}} <br> {{listing.description}} <br>
 The starting price is ksh.{{listing.listing_price}}</li>
 {% empty %}
 <li> No listings on this category yet. </li>
