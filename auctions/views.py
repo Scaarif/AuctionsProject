@@ -194,7 +194,7 @@ def create_listing(request):
 			image_url = form.cleaned_data['image_url']
 			user = request.user
 			category_id = Category.objects.get(id=request.POST['categories'])
-			Listing.objects.create(user = user, title = title, description = description,
+			Listing.objects.get_or_create(user = user, title = title, description = description,
 			listing_price = bid, image_url = image_url, category = category_id)
 		return HttpResponseRedirect(reverse('index'))
 

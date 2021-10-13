@@ -1,7 +1,7 @@
-from django.forms import ModelForm
+#from django.forms import ModelForm
 from django import forms
 
-from .models import Listing, Bid, Comment, Category 
+#from .models import Listing, Bid, Comment, Category 
 
 class CreateListingForm(forms.Form):
 	title = forms.CharField(label='Title')

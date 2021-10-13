@@ -2,7 +2,7 @@
 
 {% block body %}
 <h2>Create Listing</h2>
-<form action="{% url 'create_listing'%}" method='post'>
+<form action="{% url 'create_listing' %}" method='post'>
 	{% csrf_token %}
 	<h6>Title of listing</h6>
 	{{ listing_form.title}}
@@ -12,6 +12,9 @@
 	<br>
 	<h6>Starting bid</h6>
 	{{listing_form.bid}}
+	<br>
+	<h6>Image url</h6>
+	{{listing_form.image_url}}
 	<br>
 	<h6>Category</h6>
 	<select name='categories'>
