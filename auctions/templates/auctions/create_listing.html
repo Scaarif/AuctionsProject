@@ -2,7 +2,8 @@
 
 {% block body %}
 <h2>Create Listing</h2>
-<form action="{% url 'create_listing' %}" method='post'>
+<div class="card my-card">
+<form action="{% url 'create_listing' %}" method='post' class="card-body listing">
 	{% csrf_token %}
 	<h6>Title of listing</h6>
 	{{ listing_form.title}}
@@ -23,6 +24,7 @@
 		{% endfor %}
 	</select>
 	<br>
-	<input type='submit' class='btn btn-primary'>	
+	<input type='submit' class='btn btn-primary submit'>	
 </form>
+</div>
 {% endblock %}

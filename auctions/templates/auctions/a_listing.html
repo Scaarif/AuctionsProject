@@ -4,7 +4,7 @@
 
 {% if user.is_authenticated %}
 
-<table style='width:100%;'>
+<table style='width:100%;' class="card my-1">
 	<tbody>
 		<tr>
 			<td style='width:40px;'>
@@ -12,13 +12,13 @@
 				<img src='{{listing.image_url}}' style='width:90%;'/>
 			</td>
 			<td style='width:60%;'>
-				<div>{{listing.description}}</div>
+				<p>{{listing.description}}</p>
 				<form action="{% url 'bidding' listing.id %}" method='post'>
 					{% csrf_token %}
 					<div>
 						Bid: ksh.<input type='number' min='{{listing.listing_price}}' step='10' name='bid'
 						placeholder='{{listing.listing_price}}'>
-						<input type='submit' class='btn btn-primary'>
+						<input type='submit' class='btn-primary'>
 					</div>
 				</form>
 
@@ -49,11 +49,11 @@
 	vertical-align: top;'></textarea>
 	<input type='submit' class='btn btn-primary' style='display: inline-block; margin-top: 10px;'>	
 </form>
-<br>
+<hr>
 <h6>Comments</h6>
 <ul style='list-style-type: none;'>
 	{% for comment in comments %}
-	<div style='border: 1px solid lightgray; margin: 10px; padding:10px; border-radius; 10px; width:40%;'>
+	<div style='border: 1px solid lightgray; /*margin: 10px;*/ padding:10px; border-radius: 3px;'>
 		<li>{{comment}}</li>	
 	</div>
 	{% endfor %}

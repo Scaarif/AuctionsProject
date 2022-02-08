@@ -1,19 +1,22 @@
 {% extends 'auctions/layout.html'%}
 {%block body%}
-<h1>Active Listings</h1>
-<ul>
-	{% for listing in listings %}
+<h2>Active Listings</h2>
+{% for listing in listings %}
+<div class="card my-1">
+	<div class="card-body" >
 		{% if user.is_authenticated %}
-			<li><a href="{% url 'a_listing' listing.id %}">{{listing.title}}</a> 
+			<p class="title"><a href="{% url 'a_listing' listing.id %}">{{listing.title}}</a></p> 
 		{% else %}
-			<li style="text-decoration: underline;">{{listing.title}}</li>
+			<p class="title" style="text-decoration: underline;">{{listing.title}}</p>
 		{% endif %}
-		<br> {{listing.description}}<br>
-		The listing price is ksh.{{listing.listing_price}}</li>
+		<p> {{listing.description}}</p>
+		<p>The listing price is ksh.{{listing.listing_price}}</p>
+	</div>
+</div>
 	{% empty %}
-	<li>No active listings yet...</li>
-	{% endfor %}
-</ul>
+	<p>No active listings yet...</p>
+{% endfor %}
+
 {% if not user.is_authenticated %}
 <h5>Please <a href="{% url 'login' %}">log in </a>or <a href="{% url 'register' %}">create an account</a>
 to see all details</h5>
